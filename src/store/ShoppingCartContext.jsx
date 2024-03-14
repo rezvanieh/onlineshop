@@ -31,7 +31,7 @@ const shoppingCartReducer = (state, action) => {
       } else {
         const newItem = {
           ...action.payload,
-          quantity: 1,
+          quantity: action.payload.quantity || 1,
         };
         return {
           ...state,

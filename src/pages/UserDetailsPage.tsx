@@ -1,15 +1,35 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const UserDetailsPage = () => {
-  const id = 1;
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+interface UserDetails {
+  id: number;
+  name: {
+    firstname: string;
+    lastname: string;
+  };
+  email: string;
+  phone: string;
+  address: {
+    street: string;
+    city: string;
+    number: string;
+    zipcode: string;
+    geolocation: {
+      lat: string;
+      long: string;
+    };
+  };
+}
+
+const UserDetailsPage: React.FC = () => {
+  const id: number = 1;
+  const [user, setUser] = useState<UserDetails | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchUserDetail = async () => {
       try {
-        const response = await axios.get(
+        const response = await axios.get<UserDetails>(
           `https://fakestoreapi.com/users/${id}`
         );
         setUser(response.data);
@@ -24,11 +44,11 @@ const UserDetailsPage = () => {
   }, [id]);
 
   return (
-    <div className="container mx-auto ">
+    <div className="container mx-auto">
       {loading ? (
-        <div className="text-center ">Loading...</div>
+        <div className="text-center">Loading...</div>
       ) : user ? (
-        <div className="mt-40 md:mt-0 bg-white shadow-md p-8 max-w-2xl mx-auto text-left ">
+        <div className="mt-40 md:mt-0 bg-white shadow-md p-8 max-w-2xl mx-auto text-left">
           <h1 className="font-bold text-center mb-8">User Details</h1>
           <div className="mb-4">
             <strong className="text-gray-700">First Name:</strong>{" "}
@@ -51,7 +71,7 @@ const UserDetailsPage = () => {
             <p className="mx-8">{user.address.number}</p>
             <p className="mx-8">{user.address.zipcode}</p>
             <p className="mx-8">
-              geolocation:{user.address.geolocation.lat},{" "}
+              geolocation: {user.address.geolocation.lat},{" "}
               {user.address.geolocation.long}
             </p>
           </div>
