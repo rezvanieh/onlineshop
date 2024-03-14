@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useReducer } from "react";
+import React, {
+  createContext,
+  useContext,
+  useReducer,
+  useMemo,
+  useCallback,
+} from "react";
 
 const ShoppingCartContext = createContext();
 
@@ -66,20 +72,27 @@ const shoppingCartReducer = (state, action) => {
 const ShoppingCartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(shoppingCartReducer, initialState);
 
-  const increaseQuantity = (productId) => {
-    dispatch({
-      type: "INCREASE_QUANTITY",
-      payload: productId,
-    });
-  };
+  const increaseQuantity = useCallback(
+    (productId) => {
+      dispatch({
+        type: "INCREASE_QUANTITY",
+        payload: productId,
+      });
+    },
+    [dispatch]
+  );
+
+  const value = useMemo(
+    () => ({ state, dispatch, increaseQuantity }),
+    [state, dispatch, increaseQuantity]
+  );
 
   return (
-    <ShoppingCartContext.Provider value={{ state, dispatch, increaseQuantity }}>
+    <ShoppingCartContext.Provider value={value}>
       {children}
     </ShoppingCartContext.Provider>
   );
 };
-
 const useShoppingCart = () => {
   const context = useContext(ShoppingCartContext);
   if (!context) {
