@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import ProductCard from "../components/products/ProductCard";
 
 const ProductsPage = () => {
@@ -22,12 +22,14 @@ const ProductsPage = () => {
     fetchProducts();
   }, []);
 
-  const filteredProducts = products.filter((product) => {
-    return (
-      product.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
-      (selectedFilter === "" || product.category === selectedFilter)
-    );
-  });
+  const filteredProducts = useMemo(() => {
+    return products.filter((product) => {
+      return (
+        product.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
+        (selectedFilter === "" || product.category === selectedFilter)
+      );
+    });
+  }, [products, searchQuery, selectedFilter]);
 
   return (
     <div className="container mx-auto my-8">
