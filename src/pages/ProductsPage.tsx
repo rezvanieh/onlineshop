@@ -1,11 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import ProductCard from "../components/products/ProductCard";
 
-const ProductsPage = () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedFilter, setSelectedFilter] = useState("");
+interface Product {
+  id: number;
+  title: string;
+  category: string;
+  // Add more properties as needed
+}
+
+const ProductsPage: React.FC = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [selectedFilter, setSelectedFilter] = useState<string>("");
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -22,12 +29,14 @@ const ProductsPage = () => {
     fetchProducts();
   }, []);
 
-  const filteredProducts = products.filter((product) => {
-    return (
-      product.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
-      (selectedFilter === "" || product.category === selectedFilter)
-    );
-  });
+  const filteredProducts = useMemo(() => {
+    return products.filter((product) => {
+      return (
+        product.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
+        (selectedFilter === "" || product.category === selectedFilter)
+      );
+    });
+  }, [products, searchQuery, selectedFilter]);
 
   return (
     <div className="container mx-auto my-8">
