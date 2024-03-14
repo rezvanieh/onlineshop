@@ -22,6 +22,7 @@ const ProductsPage = () => {
     fetchProducts();
   }, []);
 
+  //using memo
   const filteredProducts = useMemo(() => {
     return products.filter((product) => {
       return (
