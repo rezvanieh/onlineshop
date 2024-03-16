@@ -1,3 +1,4 @@
+import React from "react";
 import Header from "../components/Header/MainHeader.jsx";
 
 const Error = () => {

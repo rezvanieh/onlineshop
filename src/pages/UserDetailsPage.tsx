@@ -22,7 +22,7 @@ interface UserDetails {
 }
 
 const UserDetailsPage: React.FC = () => {
-  const id: number = 1;
+  const id = 1;
   const [user, setUser] = useState<UserDetails | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 

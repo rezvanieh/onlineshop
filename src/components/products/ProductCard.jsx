@@ -1,5 +1,6 @@
 import React from "react";
 import { useShoppingCart } from "../../store/ShoppingCartContext.jsx";
+import PropTypes from "prop-types";
 
 const ProductCard = ({ product }) => {
   const fixedImageSize = {
@@ -37,6 +38,15 @@ const ProductCard = ({ product }) => {
       </div>
     </div>
   );
+};
+
+ProductCard.propTypes = {
+  product: PropTypes.shape({
+    image: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default ProductCard;

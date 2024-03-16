@@ -5,7 +5,9 @@ interface Product {
   id: number;
   title: string;
   category: string;
-  // Add more properties as needed
+  price: number;
+  description: string;
+  image: string;
 }
 
 const ProductsPage: React.FC = () => {
@@ -40,7 +42,7 @@ const ProductsPage: React.FC = () => {
 
   return (
     <div className="container mx-auto my-8">
-      <div className="flex flex-wrap items-start  mx-2 my-4 md:mx-16 md:my-4  ">
+      <div className="flex  flex-wrap items-start  mx-2 my-4 md:mx-16 md:my-4  ">
         <div className="mb-2  w-full md:w-1/2 lg:w-1/4 ">
           <input
             type="text"
@@ -59,8 +61,8 @@ const ProductsPage: React.FC = () => {
             <option value="">Category</option>
             <option value="electronics">Electronics</option>
             <option value="jewelery">Jewelery</option>
-            <option value="men's clothing">Men's clothing</option>
-            <option value="women's clothing">Women's clothing</option>
+            <option value="men's clothing">Men&apos;s clothing</option>
+            <option value="women's clothing">Women&apos;s clothing</option>
           </select>
           <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
             <i className="fas fa-caret-down"></i>
