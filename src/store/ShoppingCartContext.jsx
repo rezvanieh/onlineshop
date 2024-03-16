@@ -5,6 +5,7 @@ import React, {
   useMemo,
   useCallback,
 } from "react";
+import PropTypes from "prop-types";
 
 const ShoppingCartContext = createContext();
 
@@ -13,11 +14,10 @@ const initialState = {
 };
 
 const shoppingCartReducer = (state, action) => {
+  let existingItem = null;
   switch (action.type) {
     case "ADD_TO_CART":
-      const existingItem = state.items.find(
-        (item) => item.id === action.payload.id
-      );
+      existingItem = state.items.find((item) => item.id === action.payload.id);
 
       if (existingItem) {
         return {
@@ -93,6 +93,11 @@ const ShoppingCartProvider = ({ children }) => {
     </ShoppingCartContext.Provider>
   );
 };
+
+ShoppingCartProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
 const useShoppingCart = () => {
   const context = useContext(ShoppingCartContext);
   if (!context) {
