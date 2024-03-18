@@ -1,12 +1,12 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { ShoppingCartProvider } from "./store/ShoppingCartContext.jsx";
+import { ShoppingCartProvider } from "./store/ShoppingCartContext.tsx";
 import ProductsPage from "./pages/ProductsPage.tsx";
 import ShoppingCartPage from "./pages/ShoppingCartPage.tsx";
 import UserDetails from "./pages/UserDetailsPage.tsx";
 import RootLayout from "./pages/Root.js";
-import Error from "./pages/Error.jsx";
+import Error from "./pages/Error.tsx";
 
 const router = createBrowserRouter([
   {

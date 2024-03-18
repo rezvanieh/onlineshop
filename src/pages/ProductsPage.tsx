@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import ProductCard from "../components/products/ProductCard";
+import ProductCard from "../components/products/ProductCard.tsx";
 
 interface Product {
   id: number;
