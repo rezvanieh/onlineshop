@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useMemo } from "react";
-import ProductCard from "../components/products/ProductCard.tsx";
+import ProductCard from "../components/products/ProductCard";
 
-interface Product {
+export interface Product {
   id: number;
   title: string;
   category: string;
   price: number;
   description: string;
   image: string;
+  quantity:number;
 }
 
 const ProductsPage: React.FC = () => {
