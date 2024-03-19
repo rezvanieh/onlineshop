@@ -1,5 +1,5 @@
 import React from "react";
-import { useShoppingCart } from "../store/ShoppingCartContext.tsx";
+import { useShoppingCart } from "../store/ShoppingCartContext";
 
 interface ShoppingCartItem {
   id: number;

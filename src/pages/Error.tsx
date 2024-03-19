@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../components/Header/MainHeader.tsx";
+import Header from "../components/Header/MainHeader";
 
 const Error: React.FC = () => {
     return (

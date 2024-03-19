@@ -1,16 +1,19 @@
 import React from "react";
-import { useShoppingCart } from "../../store/ShoppingCartContext.tsx";
-import { Product } from "../../pages/ProductsPage.tsx"; // Assuming you have a types file defining the Product type
+import { useShoppingCart } from "../../store/ShoppingCartContext";
+import { Product } from "../../pages/ProductsPage";
 
+interface ProductCardProps {
+  product: Product;
+}
 
-const ProductCard: React.FC<Product> = ({ product }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   const { dispatch } = useShoppingCart();
 
   const handleAddToCart = () => {
     dispatch({
       type: "ADD_TO_CART",
-      payload: product,
+      payload: product, // Assuming you want to add only the product id to the cart
     });
   };
 
