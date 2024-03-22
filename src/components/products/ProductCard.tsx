@@ -13,7 +13,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const handleAddToCart = () => {
     dispatch({
       type: "ADD_TO_CART",
-      payload: product, // Assuming you want to add only the product id to the cart
+      payload: product, 
     });
   };
 
